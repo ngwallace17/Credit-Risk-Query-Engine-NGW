@@ -1,7 +1,7 @@
 """
 Northbridge Bank - Credit Risk Natural-Language Query Engine (Streamlit app)
 
-Converted from: Learner_Notebook_Project_3_Credit_Risk_Query_Engine_NGW.ipynb
+Converted from: Learner_Notebook_Project_3_Credit_Risk_Query_Engine_NGW (1).ipynb
 
 Pipeline (unchanged from the notebook):
     classify_intent -> (verified template | generate_query) -> validate_query
@@ -305,7 +305,7 @@ FROM loan_master lm
 JOIN sector_master sm
     ON lm.sector_code = sm.sector_code
 GROUP BY sm.sector_name
-ORDER BY total_outstanding_mm DESC;"""}
+ORDER BY total_outstanding_mm DESC"""}
 }
 
 # ── Verified Query 2: Portfolio Outstanding by Loan Category ──────────────────
@@ -318,7 +318,7 @@ sql_2 = {
     ROUND(SUM(total_outstanding) / 1000000.0, 2) AS total_outstanding_mm
 FROM loan_master
 GROUP BY loan_category
-ORDER BY total_outstanding_mm DESC;"""}
+ORDER BY total_outstanding_mm DESC"""}
 }
 
 # ── Verified Query 3: IFRS 9 Stage-wise ECL Summary ───────────────────────────
@@ -333,7 +333,7 @@ sql_3 = {
 FROM provisioning
 WHERE reporting_date = '2025-09-30'
 GROUP BY ifrs9_stage
-ORDER BY ifrs9_stage;"""}
+ORDER BY ifrs9_stage"""}
 }
 
 # ── Verified Query 4: Provision Coverage Ratio by Sector ──────────────────────
@@ -351,7 +351,7 @@ JOIN sector_master sm
     ON lm.sector_code = sm.sector_code
 WHERE p.reporting_date = '2025-09-30'
 GROUP BY sm.sector_name
-ORDER BY avg_provision_coverage_ratio DESC;"""}
+ORDER BY avg_provision_coverage_ratio DESC"""}
 }
 
 # ── Verified Query 5: Top 10 Loan Exposures ───────────────────────────────────
@@ -368,7 +368,7 @@ FROM loan_master lm
 JOIN sector_master sm
     ON lm.sector_code = sm.sector_code
 ORDER BY outstanding_exposure_mm DESC
-LIMIT 10;"""}
+LIMIT 10"""}
 }
 
 # ── Verified Query 6: Top 5 Business Group Exposures ──────────────────────────
@@ -383,7 +383,7 @@ FROM loan_master
 WHERE group_name IS NOT NULL
 GROUP BY group_name
 ORDER BY total_exposure_mm DESC
-LIMIT 5;"""}
+LIMIT 5"""}
 }
 
 # ── Verified Query 7: All Overdue Loan Accounts ───────────────────────────────
@@ -401,7 +401,7 @@ FROM loan_master lm
 JOIN sector_master sm
     ON lm.sector_code = sm.sector_code
 WHERE lm.days_past_due > 0
-ORDER BY lm.days_past_due DESC;"""}
+ORDER BY lm.days_past_due DESC"""}
 }
 
 # ── Verified Query 8: DPD Bucket Distribution ─────────────────────────────────
@@ -432,7 +432,7 @@ FROM (
     FROM loan_master
 ) bucketed
 GROUP BY dpd_bucket, bucket_order
-ORDER BY bucket_order;"""}
+ORDER BY bucket_order"""}
 }
 
 # ── Verified Query 9: Latest Rating Downgrades ────────────────────────────────
@@ -447,7 +447,7 @@ sql_9 = {
 FROM borrower_rating
 WHERE rating_date = '2025-09-30'
     AND rating_direction = 'Downgraded'
-ORDER BY pd_estimate DESC;"""}
+ORDER BY pd_estimate DESC"""}
 }
 
 # ── Verified Query 10: ECL Trend Across Reporting Quarters ────────────────────
@@ -459,7 +459,7 @@ sql_10 = {
     ROUND(SUM(ecl_amount) / 1000000.0, 2) AS total_ecl_mm
 FROM provisioning
 GROUP BY reporting_date
-ORDER BY reporting_date ASC;"""}
+ORDER BY reporting_date ASC"""}
 }
 
 # ── Verified Query Library ────────────────────────────────────────────────────
